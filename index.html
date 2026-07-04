@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jimmy · 自动化 & AI 系统</title>
+<meta name="description" content="独立搭建、长期在生产环境运行的自动化与 AI 系统 —— 从自建服务器上的多 Agent 流水线，到定时量化分析、浏览器插件与工作流编排。">
+<style>
+  :root{
+    --bg:#0b0d10; --panel:#14171c; --panel-2:#191d23;
+    --line:#242a31; --text:#e7ebef; --muted:#9aa4af; --faint:#6b7480;
+    --accent:#5eead4; --accent-2:#7dd3fc; --warn:#fbbf24;
+    --radius:14px; --maxw:920px;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:var(--sans); line-height:1.65; font-size:16px;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent-2); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 22px;}
+
+  /* Hero */
+  header{
+    position:relative; overflow:hidden;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(900px 380px at 20% -10%, rgba(94,234,212,.10), transparent 60%),
+      radial-gradient(700px 320px at 100% 0%, rgba(125,211,252,.08), transparent 55%);
+  }
+  .hero{padding:74px 0 56px;}
+  .kicker{
+    font-family:var(--mono); font-size:13px; letter-spacing:.12em;
+    color:var(--accent); text-transform:uppercase; margin:0 0 16px;
+  }
+  h1{
+    font-size:clamp(30px,5.4vw,46px); line-height:1.15; margin:0 0 18px;
+    font-weight:700; letter-spacing:-0.01em;
+  }
+  h1 .grad{
+    background:linear-gradient(92deg,var(--accent),var(--accent-2));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .lede{font-size:18px; color:var(--muted); max-width:640px; margin:0 0 26px;}
+  .tags{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 30px;}
+  .tag{
+    font-family:var(--mono); font-size:12.5px; color:var(--muted);
+    border:1px solid var(--line); background:var(--panel);
+    padding:5px 11px; border-radius:999px;
+  }
+  .cta{display:flex; flex-wrap:wrap; gap:12px;}
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 18px; border-radius:10px; font-size:14.5px; font-weight:600;
+    border:1px solid var(--line); background:var(--panel); color:var(--text);
+    transition:border-color .15s ease, transform .1s ease;
+  }
+  .btn:hover{border-color:var(--accent); text-decoration:none; transform:translateY(-1px);}
+  .btn.primary{background:linear-gradient(92deg,rgba(94,234,212,.16),rgba(125,211,252,.16)); border-color:rgba(94,234,212,.35);}
+
+  /* Sections */
+  section{padding:56px 0;}
+  .sec-head{display:flex; align-items:baseline; gap:14px; margin:0 0 8px;}
+  .sec-head h2{font-size:22px; margin:0; letter-spacing:-0.01em;}
+  .sec-head .n{font-family:var(--mono); color:var(--faint); font-size:13px;}
+  .sec-sub{color:var(--muted); margin:0 0 30px; font-size:15px;}
+
+  /* Project cards */
+  .cards{display:grid; gap:18px;}
+  .card{
+    background:linear-gradient(180deg,var(--panel),var(--panel-2));
+    border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px 24px 22px; position:relative;
+    transition:border-color .18s ease, transform .12s ease;
+  }
+  .card:hover{border-color:#33404a; transform:translateY(-2px);}
+  .card .top{display:flex; align-items:center; gap:12px; margin-bottom:12px; flex-wrap:wrap;}
+  .card .ico{
+    width:38px; height:38px; flex:none; border-radius:10px;
+    display:grid; place-items:center; font-size:19px;
+    background:var(--panel-2); border:1px solid var(--line);
+  }
+  .card h3{margin:0; font-size:18px; letter-spacing:-0.01em;}
+  .card .role{font-family:var(--mono); font-size:12px; color:var(--faint); margin-top:2px;}
+  .card .status{
+    margin-left:auto; font-family:var(--mono); font-size:11.5px;
+    color:var(--accent); border:1px solid rgba(94,234,212,.3);
+    padding:3px 9px; border-radius:999px; white-space:nowrap;
+  }
+  .card p{margin:0 0 14px; color:var(--muted); font-size:14.5px;}
+  .card .flow{
+    font-family:var(--mono); font-size:12.5px; color:var(--accent-2);
+    background:#0e1216; border:1px solid var(--line); border-radius:8px;
+    padding:9px 12px; margin:0 0 14px; overflow-x:auto; white-space:nowrap;
+  }
+  .card .flow .ar{color:var(--faint); padding:0 4px;}
+  .stack{display:flex; flex-wrap:wrap; gap:6px; margin-top:2px;}
+  .chip{
+    font-family:var(--mono); font-size:11.5px; color:var(--muted);
+    background:var(--panel-2); border:1px solid var(--line);
+    padding:3px 9px; border-radius:6px;
+  }
+  .card .links{margin-top:14px; font-size:13.5px; display:flex; gap:16px; flex-wrap:wrap;}
+  .card .links .priv{color:var(--faint); font-family:var(--mono); font-size:12.5px;}
+
+  /* Capabilities strip */
+  .cap-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:14px;}
+  .cap{
+    border:1px solid var(--line); background:var(--panel); border-radius:12px;
+    padding:18px 18px;
+  }
+  .cap h4{margin:0 0 6px; font-size:15px;}
+  .cap p{margin:0; color:var(--muted); font-size:13.5px;}
+
+  /* Note box */
+  .note{
+    border:1px solid var(--line); border-left:3px solid var(--warn);
+    background:var(--panel); border-radius:10px; padding:16px 18px;
+    color:var(--muted); font-size:14px;
+  }
+  .note b{color:var(--text);}
+
+  footer{border-top:1px solid var(--line); padding:34px 0 46px; color:var(--faint); font-size:13.5px;}
+  footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap; align-items:center;}
+  footer a{color:var(--muted);}
+
+  @media(max-width:640px){
+    .cap-grid{grid-template-columns:1fr;}
+    .hero{padding:56px 0 44px;}
+    section{padding:44px 0;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <p class="kicker">Automation · AI Systems · Full-stack tinkering</p>
+    <h1>我搭建<span class="grad">长期跑在生产环境</span>里的<br>自动化与 AI 系统。</h1>
+    <p class="lede">
+      不是 demo，是每天真实在运行的东西 —— 自建服务器上的多 Agent 学习流水线、
+      定时量化分析、浏览器插件、工作流编排。一个人从想法到落地、再到长期维护。
+    </p>
+    <div class="tags">
+      <span class="tag">LLM 工程</span>
+      <span class="tag">Agent 编排</span>
+      <span class="tag">服务器运维</span>
+      <span class="tag">定时/事件调度</span>
+      <span class="tag">数据管道</span>
+      <span class="tag">量化</span>
+      <span class="tag">浏览器扩展</span>
+      <span class="tag">Python</span>
+    </div>
+    <div class="cta">
+      <a class="btn primary" href="#projects">看项目 ↓</a>
+      <a class="btn" href="https://github.com/JinmingShi1" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-head"><span class="n">01</span><h2>项目</h2></div>
+    <p class="sec-sub">下面展示的是系统的<b style="color:var(--text)">架构与工程思路</b> —— 具体数据、账号与密钥均已脱敏，不影响你看清「怎么搭的、解决了什么」。</p>
+
+    <div class="cards">
+
+      <!-- 1 Hermes -->
+      <article class="card">
+        <div class="top">
+          <div class="ico">🤖</div>
+          <div>
+            <h3>自建服务器上的多 Agent 学习系统</h3>
+            <div class="role">Autonomous agents · 自研调度 · 生产运行中</div>
+          </div>
+          <span class="status">● 每天两班运行</span>
+        </div>
+        <p>
+          在一台自管的云服务器（ARM / Ubuntu）上跑着两个领域 Agent（科技 & 金融），
+          每天早晚各一班：自动汇聚当日信源 → 融合实时行情与宏观指标 → LLM 做深度研究与研判 →
+          生成结构化日报 → 分发到多个渠道。信源中枢、行情快照、报告归档全部自动衔接，无人值守。
+        </p>
+        <div class="flow">
+          RSS 聚合<span class="ar">→</span>行情/宏观 API<span class="ar">→</span>拼装上下文<span class="ar">→</span>LLM Agent 研究<span class="ar">→</span>结构化日报<span class="ar">→</span>Discord + Notion 归档
+        </div>
+        <div class="stack">
+          <span class="chip">Cloud VM (ARM)</span>
+          <span class="chip">cron 调度</span>
+          <span class="chip">DeepSeek LLM</span>
+          <span class="chip">Miniflux RSS</span>
+          <span class="chip">Finnhub / CoinGecko / FRED</span>
+          <span class="chip">Discord API</span>
+          <span class="chip">Notion API</span>
+          <span class="chip">Docker</span>
+        </div>
+        <div class="links"><span class="priv">🔒 私有 —— 涉及个人信源与账号，仅展示架构</span></div>
+      </article>
+
+      <!-- 2 A股 -->
+      <article class="card">
+        <div class="top">
+          <div class="ico">📈</div>
+          <div>
+            <h3>A股每日自动分析</h3>
+            <div class="role">GitHub Actions · 定时量化 · 开源</div>
+          </div>
+          <span class="status">● 定时任务</span>
+        </div>
+        <p>
+          一条完全跑在 GitHub Actions 上的免费流水线：收盘后定时触发，对一篮子龙头股逐只抓取行情、
+          做技术面分析并用 LLM 生成解读，最后汇总推送。含对推送层的多处稳定性改造
+          （限流重试、长报告分块与附件化投递），保证长期无人值守也不刷屏、不丢消息。
+        </p>
+        <div class="flow">
+          Actions cron<span class="ar">→</span>逐股行情抓取<span class="ar">→</span>技术面 + LLM 解读<span class="ar">→</span>汇总记分板<span class="ar">→</span>Discord 推送
+        </div>
+        <div class="stack">
+          <span class="chip">GitHub Actions</span>
+          <span class="chip">Python</span>
+          <span class="chip">DeepSeek LLM</span>
+          <span class="chip">efinance / 腾讯行情</span>
+          <span class="chip">Discord Webhook</span>
+        </div>
+        <div class="links">
+          <a href="https://github.com/JinmingShi1/daily_stock_analysis" target="_blank" rel="noopener">GitHub 仓库 ↗</a>
+        </div>
+      </article>
+
+      <!-- 3 n8n -->
+      <article class="card">
+        <div class="top">
+          <div class="ico">🔗</div>
+          <div>
+            <h3>n8n 自动化工作流</h3>
+            <div class="role">低代码编排 · 自托管</div>
+          </div>
+          <span class="status">● 每日运行</span>
+        </div>
+        <p>
+          自托管 n8n 上编排的一组工作流。代表作是「法语学习助手」：每天拉取法语新闻播客的最新一集 →
+          下载音频作为附件推送（可在客户端直接边听边看）→ 抓取全文转写 → LLM 生成中文精读笔记 →
+          自动分条投递。另有服务健康监控，只在依赖服务异常时才告警。
+        </p>
+        <div class="flow">
+          播客 RSS<span class="ar">→</span>下载音频<span class="ar">→</span>抓全文转写<span class="ar">→</span>LLM 精读<span class="ar">→</span>分条私信推送
+        </div>
+        <div class="stack">
+          <span class="chip">n8n (self-hosted)</span>
+          <span class="chip">RSS / HTTP</span>
+          <span class="chip">Gemini LLM</span>
+          <span class="chip">二进制/附件处理</span>
+          <span class="chip">Discord API</span>
+        </div>
+        <div class="links"><span class="priv">🔒 自托管实例 —— 仅展示工作流设计</span></div>
+      </article>
+
+      <!-- 4 bilingual-subs -->
+      <article class="card">
+        <div class="top">
+          <div class="ico">🎬</div>
+          <div>
+            <h3>双语字幕 Chrome 插件</h3>
+            <div class="role">浏览器扩展 · 实时翻译</div>
+          </div>
+        </div>
+        <p>
+          给流媒体加「原文 + 中文」双语字幕的 Chrome 扩展。技术核心是在页面主世界劫持 fetch/XHR
+          抓取播放器加载的字幕文件（VTT / TTML / 原生文本轨多路兜底），解析后按行号批量调 LLM 翻译，
+          再绘制随时间轴精确同步的双语覆盖层。用户填自己的 API Key，隐私自控。
+        </p>
+        <div class="flow">
+          劫持字幕请求<span class="ar">→</span>多格式解析<span class="ar">→</span>按行批量翻译<span class="ar">→</span>时间轴同步覆盖层
+        </div>
+        <div class="stack">
+          <span class="chip">Chrome Extension (MV3)</span>
+          <span class="chip">JavaScript</span>
+          <span class="chip">fetch/XHR 劫持</span>
+          <span class="chip">VTT / TTML 解析</span>
+          <span class="chip">DeepSeek API</span>
+        </div>
+        <div class="links"><span class="priv">🔒 个人使用 —— 可按需开源</span></div>
+      </article>
+
+      <!-- 5 quant-trader -->
+      <article class="card">
+        <div class="top">
+          <div class="ico">📊</div>
+          <div>
+            <h3>量化回测引擎</h3>
+            <div class="role">策略研究 · Python</div>
+          </div>
+        </div>
+        <p>
+          自己写的一套轻量回测框架：数据获取与本地缓存、策略定义、回测执行与绩效可视化（资金曲线）分层解耦。
+          用来快速验证交易策略想法，把「一个念头」变成可量化、可比较的结果。
+        </p>
+        <div class="flow">
+          行情数据 + 缓存<span class="ar">→</span>策略信号<span class="ar">→</span>回测撮合<span class="ar">→</span>绩效 & 资金曲线
+        </div>
+        <div class="stack">
+          <span class="chip">Python</span>
+          <span class="chip">pandas</span>
+          <span class="chip">matplotlib</span>
+          <span class="chip">数据缓存层</span>
+        </div>
+        <div class="links"><span class="priv">🔒 个人研究 —— 可按需开源</span></div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="sec-head"><span class="n">02</span><h2>我擅长什么</h2></div>
+    <p class="sec-sub">跨过「能跑一次」和「每天稳定跑半年」之间的那道坎。</p>
+    <div class="cap-grid">
+      <div class="cap">
+        <h4>把 LLM 接进真实系统</h4>
+        <p>不止调 API —— 上下文拼装、多源信息融合、成本/限流治理、输出结构化、幻觉与来源约束。</p>
+      </div>
+      <div class="cap">
+        <h4>端到端自己扛</h4>
+        <p>从选服务器、装服务、写调度，到数据管道、分发渠道、监控告警，一个人打通全链路。</p>
+      </div>
+      <div class="cap">
+        <h4>为「长期运行」而做</h4>
+        <p>重试、去重、限流退避、幂等、脱敏 —— 让系统在无人值守下也不炸、不刷屏、不丢数据。</p>
+      </div>
+      <div class="cap">
+        <h4>低成本落地</h4>
+        <p>善用免费额度与开源工具（Actions / 自托管 / 免费行情源）把想法用近乎零成本跑起来。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="note">
+      <b>关于隐私：</b>这些系统大多在处理我个人的信源、账号与数据，所以标为「私有」。
+      这里展示的是<b>架构、技术选型和工程取舍</b> —— 需要更深入了解某个项目的实现细节，欢迎单独聊。
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Jimmy · 用自动化让重复的事自己跑起来</span>
+    <span><a href="https://github.com/JinmingShi1" target="_blank" rel="noopener">GitHub ↗</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
