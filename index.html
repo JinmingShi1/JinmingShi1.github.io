@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jimmy · 自动化 & AI 系统</title>
-<meta name="description" content="独立搭建、长期在生产环境运行的自动化与 AI 系统 —— 从自建服务器上的多 Agent 流水线，到定时量化分析、浏览器插件与工作流编排。">
+<title>Jinming (Jimmy) Shi · AI & Automation Engineer</title>
+<meta name="description" content="I build AI and automation systems that run unattended in production — multi-agent LLM pipelines on self-managed infrastructure, scheduled quantitative analysis, browser extensions, and workflow orchestration.">
 <style>
   :root{
     --bg:#0b0d10; --panel:#14171c; --panel-2:#191d23;
@@ -12,7 +12,7 @@
     --accent:#5eead4; --accent-2:#7dd3fc; --warn:#fbbf24;
     --radius:14px; --maxw:920px;
     --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
-    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -46,7 +46,7 @@
     background:linear-gradient(92deg,var(--accent),var(--accent-2));
     -webkit-background-clip:text; background-clip:text; color:transparent;
   }
-  .lede{font-size:18px; color:var(--muted); max-width:640px; margin:0 0 26px;}
+  .lede{font-size:18px; color:var(--muted); max-width:660px; margin:0 0 26px;}
   .tags{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 30px;}
   .tag{
     font-family:var(--mono); font-size:12.5px; color:var(--muted);
@@ -140,33 +140,35 @@
 
 <header>
   <div class="wrap hero">
-    <p class="kicker">Automation · AI Systems · Full-stack tinkering</p>
-    <h1>我搭建<span class="grad">长期跑在生产环境</span>里的<br>自动化与 AI 系统。</h1>
+    <p class="kicker">Jinming (Jimmy) Shi · AI &amp; Automation Engineer</p>
+    <h1>I build AI systems that <span class="grad">run unattended in production</span> — and stay running.</h1>
     <p class="lede">
-      不是 demo，是每天真实在运行的东西 —— 自建服务器上的多 Agent 学习流水线、
-      定时量化分析、浏览器插件、工作流编排。一个人从想法到落地、再到长期维护。
+      Not demos. These are systems I designed, deployed, and have operated daily for months:
+      multi-agent LLM pipelines on self-managed cloud infrastructure, scheduled quantitative
+      analysis, browser extensions, and workflow orchestration. One person, idea to production to maintenance.
     </p>
     <div class="tags">
-      <span class="tag">LLM 工程</span>
-      <span class="tag">Agent 编排</span>
-      <span class="tag">服务器运维</span>
-      <span class="tag">定时/事件调度</span>
-      <span class="tag">数据管道</span>
-      <span class="tag">量化</span>
-      <span class="tag">浏览器扩展</span>
-      <span class="tag">Python</span>
+      <span class="tag">LLM Engineering</span>
+      <span class="tag">Agent Orchestration</span>
+      <span class="tag">Linux / DevOps</span>
+      <span class="tag">CI/CD & Scheduling</span>
+      <span class="tag">Data Pipelines</span>
+      <span class="tag">Quant Analysis</span>
+      <span class="tag">Browser Extensions</span>
+      <span class="tag">Python · JavaScript</span>
     </div>
     <div class="cta">
-      <a class="btn primary" href="#projects">看项目 ↓</a>
+      <a class="btn primary" href="#projects">View Projects ↓</a>
       <a class="btn" href="https://github.com/JinmingShi1" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn" href="mailto:lkwinderman@gmail.com">Contact Me</a>
     </div>
   </div>
 </header>
 
 <section id="projects">
   <div class="wrap">
-    <div class="sec-head"><span class="n">01</span><h2>项目</h2></div>
-    <p class="sec-sub">下面展示的是系统的<b style="color:var(--text)">架构与工程思路</b> —— 具体数据、账号与密钥均已脱敏，不影响你看清「怎么搭的、解决了什么」。</p>
+    <div class="sec-head"><span class="n">01</span><h2>Projects</h2></div>
+    <p class="sec-sub">Each project shows the <b style="color:var(--text)">architecture and engineering decisions</b>. Personal data, accounts, and credentials are redacted — what matters is how the systems are built and why.</p>
 
     <div class="cards">
 
@@ -175,22 +177,25 @@
         <div class="top">
           <div class="ico">🤖</div>
           <div>
-            <h3>自建服务器上的多 Agent 学习系统</h3>
-            <div class="role">Autonomous agents · 自研调度 · 生产运行中</div>
+            <h3>Multi-Agent Research System on Self-Managed Cloud</h3>
+            <div class="role">Autonomous LLM agents · custom scheduling · in production</div>
           </div>
-          <span class="status">● 每天两班运行</span>
+          <span class="status">● runs 2×/day</span>
         </div>
         <p>
-          在一台自管的云服务器（ARM / Ubuntu）上跑着两个领域 Agent（科技 & 金融），
-          每天早晚各一班：自动汇聚当日信源 → 融合实时行情与宏观指标 → LLM 做深度研究与研判 →
-          生成结构化日报 → 分发到多个渠道。信源中枢、行情快照、报告归档全部自动衔接，无人值守。
+          Two domain agents (tech &amp; finance) running on a self-managed ARM cloud VM (Ubuntu).
+          Twice daily, fully unattended: aggregate curated RSS sources → merge live market quotes
+          and macro indicators → LLM deep-research pass with source-citation constraints →
+          structured daily report → delivered to Discord and archived to Notion. Includes a
+          self-hosted RSS hub, market-data snapshots, rate-limit handling, and idempotent
+          publishing — the full chain has run for months without manual intervention.
         </p>
         <div class="flow">
-          RSS 聚合<span class="ar">→</span>行情/宏观 API<span class="ar">→</span>拼装上下文<span class="ar">→</span>LLM Agent 研究<span class="ar">→</span>结构化日报<span class="ar">→</span>Discord + Notion 归档
+          RSS hub<span class="ar">→</span>market / macro APIs<span class="ar">→</span>context assembly<span class="ar">→</span>LLM agent research<span class="ar">→</span>structured report<span class="ar">→</span>Discord + Notion archive
         </div>
         <div class="stack">
-          <span class="chip">Cloud VM (ARM)</span>
-          <span class="chip">cron 调度</span>
+          <span class="chip">Cloud VM (ARM64)</span>
+          <span class="chip">cron scheduling</span>
           <span class="chip">DeepSeek LLM</span>
           <span class="chip">Miniflux RSS</span>
           <span class="chip">Finnhub / CoinGecko / FRED</span>
@@ -198,36 +203,39 @@
           <span class="chip">Notion API</span>
           <span class="chip">Docker</span>
         </div>
-        <div class="links"><span class="priv">🔒 私有 —— 涉及个人信源与账号，仅展示架构</span></div>
+        <div class="links"><span class="priv">🔒 Private — processes personal feeds &amp; accounts; architecture shown above</span></div>
       </article>
 
-      <!-- 2 A股 -->
+      <!-- 2 Stock analysis -->
       <article class="card">
         <div class="top">
           <div class="ico">📈</div>
           <div>
-            <h3>A股每日自动分析</h3>
-            <div class="role">GitHub Actions · 定时量化 · 开源</div>
+            <h3>Automated Daily Stock Analysis Pipeline</h3>
+            <div class="role">GitHub Actions · scheduled quant · open source</div>
           </div>
-          <span class="status">● 定时任务</span>
+          <span class="status">● scheduled CI</span>
         </div>
         <p>
-          一条完全跑在 GitHub Actions 上的免费流水线：收盘后定时触发，对一篮子龙头股逐只抓取行情、
-          做技术面分析并用 LLM 生成解读，最后汇总推送。含对推送层的多处稳定性改造
-          （限流重试、长报告分块与附件化投递），保证长期无人值守也不刷屏、不丢消息。
+          A zero-infrastructure pipeline running entirely on GitHub Actions: triggered after
+          market close, it fetches quotes for a basket of large-cap stocks, runs per-ticker
+          technical analysis with LLM-generated commentary, and delivers a consolidated report.
+          I hardened the delivery layer for long-term unattended operation — rate-limit retries
+          with backoff, empty-chunk filtering, and long-report batching into a scoreboard summary
+          plus file attachment (down from 65 messages to 1).
         </p>
         <div class="flow">
-          Actions cron<span class="ar">→</span>逐股行情抓取<span class="ar">→</span>技术面 + LLM 解读<span class="ar">→</span>汇总记分板<span class="ar">→</span>Discord 推送
+          Actions cron<span class="ar">→</span>per-ticker quotes<span class="ar">→</span>technicals + LLM commentary<span class="ar">→</span>scoreboard summary<span class="ar">→</span>Discord delivery
         </div>
         <div class="stack">
           <span class="chip">GitHub Actions</span>
           <span class="chip">Python</span>
           <span class="chip">DeepSeek LLM</span>
-          <span class="chip">efinance / 腾讯行情</span>
+          <span class="chip">market data APIs</span>
           <span class="chip">Discord Webhook</span>
         </div>
         <div class="links">
-          <a href="https://github.com/JinmingShi1/daily_stock_analysis" target="_blank" rel="noopener">GitHub 仓库 ↗</a>
+          <a href="https://github.com/JinmingShi1/daily_stock_analysis" target="_blank" rel="noopener">View on GitHub ↗</a>
         </div>
       </article>
 
@@ -236,27 +244,29 @@
         <div class="top">
           <div class="ico">🔗</div>
           <div>
-            <h3>n8n 自动化工作流</h3>
-            <div class="role">低代码编排 · 自托管</div>
+            <h3>Self-Hosted Workflow Orchestration (n8n)</h3>
+            <div class="role">low-code orchestration · self-hosted</div>
           </div>
-          <span class="status">● 每日运行</span>
+          <span class="status">● daily</span>
         </div>
         <p>
-          自托管 n8n 上编排的一组工作流。代表作是「法语学习助手」：每天拉取法语新闻播客的最新一集 →
-          下载音频作为附件推送（可在客户端直接边听边看）→ 抓取全文转写 → LLM 生成中文精读笔记 →
-          自动分条投递。另有服务健康监控，只在依赖服务异常时才告警。
+          A set of workflows on a self-hosted n8n instance. Flagship: a French-learning assistant
+          that pulls the latest episode of a French news podcast daily, delivers the audio as a
+          native in-app attachment (listen while reading), scrapes the full transcript, generates
+          an LLM study guide with vocabulary and grammar notes, and delivers it in message-sized
+          chunks. Also runs a service health monitor that alerts only on failure — no noise.
         </p>
         <div class="flow">
-          播客 RSS<span class="ar">→</span>下载音频<span class="ar">→</span>抓全文转写<span class="ar">→</span>LLM 精读<span class="ar">→</span>分条私信推送
+          podcast RSS<span class="ar">→</span>audio download<span class="ar">→</span>transcript scrape<span class="ar">→</span>LLM study guide<span class="ar">→</span>chunked DM delivery
         </div>
         <div class="stack">
           <span class="chip">n8n (self-hosted)</span>
           <span class="chip">RSS / HTTP</span>
           <span class="chip">Gemini LLM</span>
-          <span class="chip">二进制/附件处理</span>
+          <span class="chip">binary/attachment handling</span>
           <span class="chip">Discord API</span>
         </div>
-        <div class="links"><span class="priv">🔒 自托管实例 —— 仅展示工作流设计</span></div>
+        <div class="links"><span class="priv">🔒 Self-hosted instance — workflow design shown above</span></div>
       </article>
 
       <!-- 4 bilingual-subs -->
@@ -264,26 +274,29 @@
         <div class="top">
           <div class="ico">🎬</div>
           <div>
-            <h3>双语字幕 Chrome 插件</h3>
-            <div class="role">浏览器扩展 · 实时翻译</div>
+            <h3>Bilingual Subtitles Chrome Extension</h3>
+            <div class="role">browser extension · real-time translation</div>
           </div>
         </div>
         <p>
-          给流媒体加「原文 + 中文」双语字幕的 Chrome 扩展。技术核心是在页面主世界劫持 fetch/XHR
-          抓取播放器加载的字幕文件（VTT / TTML / 原生文本轨多路兜底），解析后按行号批量调 LLM 翻译，
-          再绘制随时间轴精确同步的双语覆盖层。用户填自己的 API Key，隐私自控。
+          A Chrome extension (Manifest V3) that overlays original + translated subtitles on
+          streaming sites. The core: intercepting fetch/XHR in the page's main world to capture
+          subtitle files as the player loads them, parsing multiple formats (VTT / TTML / native
+          text tracks as fallback), batch-translating lines via LLM API with line-number mapping,
+          and rendering an overlay synced precisely to the video timeline. Bring-your-own-API-key
+          design — user data never touches a third-party server.
         </p>
         <div class="flow">
-          劫持字幕请求<span class="ar">→</span>多格式解析<span class="ar">→</span>按行批量翻译<span class="ar">→</span>时间轴同步覆盖层
+          intercept subtitle requests<span class="ar">→</span>multi-format parsing<span class="ar">→</span>batched LLM translation<span class="ar">→</span>timeline-synced overlay
         </div>
         <div class="stack">
           <span class="chip">Chrome Extension (MV3)</span>
           <span class="chip">JavaScript</span>
-          <span class="chip">fetch/XHR 劫持</span>
-          <span class="chip">VTT / TTML 解析</span>
+          <span class="chip">fetch/XHR interception</span>
+          <span class="chip">VTT / TTML parsing</span>
           <span class="chip">DeepSeek API</span>
         </div>
-        <div class="links"><span class="priv">🔒 个人使用 —— 可按需开源</span></div>
+        <div class="links"><span class="priv">🔒 Personal use — open-sourcing on request</span></div>
       </article>
 
       <!-- 5 quant-trader -->
@@ -291,24 +304,26 @@
         <div class="top">
           <div class="ico">📊</div>
           <div>
-            <h3>量化回测引擎</h3>
-            <div class="role">策略研究 · Python</div>
+            <h3>Quantitative Backtesting Engine</h3>
+            <div class="role">strategy research · Python</div>
           </div>
         </div>
         <p>
-          自己写的一套轻量回测框架：数据获取与本地缓存、策略定义、回测执行与绩效可视化（资金曲线）分层解耦。
-          用来快速验证交易策略想法，把「一个念头」变成可量化、可比较的结果。
+          A lightweight backtesting framework built from scratch with clean separation of
+          concerns: data fetching with a local cache layer, strategy definition, backtest
+          execution, and performance visualization (equity curves). Built to turn trading ideas
+          into quantified, comparable results fast.
         </p>
         <div class="flow">
-          行情数据 + 缓存<span class="ar">→</span>策略信号<span class="ar">→</span>回测撮合<span class="ar">→</span>绩效 & 资金曲线
+          market data + cache<span class="ar">→</span>strategy signals<span class="ar">→</span>backtest execution<span class="ar">→</span>performance &amp; equity curve
         </div>
         <div class="stack">
           <span class="chip">Python</span>
           <span class="chip">pandas</span>
           <span class="chip">matplotlib</span>
-          <span class="chip">数据缓存层</span>
+          <span class="chip">caching layer</span>
         </div>
-        <div class="links"><span class="priv">🔒 个人研究 —— 可按需开源</span></div>
+        <div class="links"><span class="priv">🔒 Personal research — open-sourcing on request</span></div>
       </article>
 
     </div>
@@ -317,24 +332,24 @@
 
 <section>
   <div class="wrap">
-    <div class="sec-head"><span class="n">02</span><h2>我擅长什么</h2></div>
-    <p class="sec-sub">跨过「能跑一次」和「每天稳定跑半年」之间的那道坎。</p>
+    <div class="sec-head"><span class="n">02</span><h2>What I Bring</h2></div>
+    <p class="sec-sub">The gap between "it ran once" and "it has run every day for six months" is where I work.</p>
     <div class="cap-grid">
       <div class="cap">
-        <h4>把 LLM 接进真实系统</h4>
-        <p>不止调 API —— 上下文拼装、多源信息融合、成本/限流治理、输出结构化、幻觉与来源约束。</p>
+        <h4>LLMs in real systems</h4>
+        <p>Beyond API calls: context assembly, multi-source data fusion, cost and rate-limit management, structured output, and hallucination guardrails with source-citation constraints.</p>
       </div>
       <div class="cap">
-        <h4>端到端自己扛</h4>
-        <p>从选服务器、装服务、写调度，到数据管道、分发渠道、监控告警，一个人打通全链路。</p>
+        <h4>End-to-end ownership</h4>
+        <p>Provisioning servers, deploying services, writing schedulers, building data pipelines, wiring delivery channels, setting up monitoring — I own the whole chain solo.</p>
       </div>
       <div class="cap">
-        <h4>为「长期运行」而做</h4>
-        <p>重试、去重、限流退避、幂等、脱敏 —— 让系统在无人值守下也不炸、不刷屏、不丢数据。</p>
+        <h4>Built for unattended operation</h4>
+        <p>Retries with backoff, deduplication, idempotent publishing, secrets hygiene — systems that don't break, spam, or lose data when nobody is watching.</p>
       </div>
       <div class="cap">
-        <h4>低成本落地</h4>
-        <p>善用免费额度与开源工具（Actions / 自托管 / 免费行情源）把想法用近乎零成本跑起来。</p>
+        <h4>Cost-conscious delivery</h4>
+        <p>Free-tier compute, open-source tooling, and efficient LLM usage — production pipelines running at near-zero cost. I treat cost as an engineering constraint, not an afterthought.</p>
       </div>
     </div>
   </div>
@@ -343,16 +358,21 @@
 <section>
   <div class="wrap">
     <div class="note">
-      <b>关于隐私：</b>这些系统大多在处理我个人的信源、账号与数据，所以标为「私有」。
-      这里展示的是<b>架构、技术选型和工程取舍</b> —— 需要更深入了解某个项目的实现细节，欢迎单独聊。
+      <b>A note on privacy:</b> most of these systems process my personal feeds, accounts, and
+      data, so they're marked private. What's shown here is the <b>architecture, tech choices,
+      and engineering trade-offs</b>. Happy to walk through any implementation in depth — just ask.
     </div>
   </div>
 </section>
 
 <footer>
   <div class="wrap">
-    <span>© 2026 Jimmy · 用自动化让重复的事自己跑起来</span>
-    <span><a href="https://github.com/JinmingShi1" target="_blank" rel="noopener">GitHub ↗</a></span>
+    <span>© 2026 Jinming Shi · Making the repetitive run itself</span>
+    <span>
+      <a href="https://github.com/JinmingShi1" target="_blank" rel="noopener">GitHub ↗</a>
+      &nbsp;·&nbsp;
+      <a href="mailto:lkwinderman@gmail.com">lkwinderman@gmail.com</a>
+    </span>
   </div>
 </footer>
 
